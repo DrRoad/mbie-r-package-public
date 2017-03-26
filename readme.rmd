@@ -1,5 +1,4 @@
 ```{r Header, echo=FALSE, results='hide', cache=FALSE, message=FALSE, fig.width=2.25, fig.height=.6, fig.align="center", fig.cap="", dpi=200}
-
 library(mbie)
 library(mbiemaps)
 
@@ -22,11 +21,10 @@ This data and code are available under a Creative Commons license - see http://i
 
 ```{r, RTESeg, warnings=FALSE, message=FALSE, dev="png", fig.align='center', fig.width=9, tidy=FALSE}
 
-library(mbiedata)
+load(url("https://github.com/nz-mbie/mbie-r-package-public/blob/master/raw_data/mbie-r-package-public-example-data.rda"))
 library(dplyr)
 library(treemap)
 
-data(RTEs)
 
 # Estimate compound annual growth rate
 growth <- RTEs %>%
@@ -64,8 +62,7 @@ library(dplyr)
 library(scales)
 library(ggplot2)
 library(ggthemes)
-
-data(IVStrips)
+library(ggseas)
 
 tmp <- IVStrips %>%
             group_by(YearQuarter, CountryGroup(COPRTop5)) %>%
@@ -76,9 +73,9 @@ tmp$period <- with(tmp, as.numeric(substring(YearQuarter, 1, 4)) + (as.numeric(s
 names(tmp)[2] <- "Country"
 
 ggplot(tmp, aes(x = period, y = Total / 10^6, color = Country)) +
-  stat_sa(frequency = 4, geom = "point", size = 2) +
-  stat_sa(frequency = 4, size = 2) +
-  geom_line(frequency = 4, size = 0.8, alpha = 0.4) +
+  stat_seas(frequency = 4, geom = "point", size = 2) +
+  stat_seas(frequency = 4, size = 2) +
+  geom_line(size = 0.8, alpha = 0.4) +
   theme_economist() +
   labs(x = "", y = "Total spend ($m)\n") +
   scale_color_manual("", values=tourism.cols("Alternating")) +
@@ -98,9 +95,6 @@ library(mbiemaps)
 library(dplyr)
 
 data(RTO)
-
-# load in the Regional Tourism Estimate (RTE) data
-data(RTEs)
 
 # Aggregate domestic tourism spend and average annual growth rate
 dom <- RTEs %>%
@@ -140,7 +134,6 @@ trellis.par.set("axis.line", list(col=NA,lty=1,lwd=1))
 spplot(RTO, zcol="Growth", col.regions=cols, main="Domestic tourist spend", col="white", 
 	sp.layout=list("sp.points", coords, pch=1, col="black", lwd=2, cex=sizes)) # add circles layer
 grid.text("Circle size is proportional to\ndomestic tourism spend in 2013", .2,.7)
-grid.text("Average growth per year in domestic tourism 2009 - 2013", .93,.5, , rot=-90)
-
+grid.text("Average growth per year in domestic tourism 2009 - 2013", .93,.5, rot=-90)
 
 ```
