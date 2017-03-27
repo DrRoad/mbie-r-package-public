@@ -3,16 +3,26 @@
 ##		the sought after package it loads it.  
 ##		For the purposes of testing the new build we want R to load the TEST libraries first
 
-## load common .Rprofile
-PrefLibPaths <- "3.1.2-20160209"
-source("P:/R/common.Rprofile")
-
-## Set the library path so the Test folder is listed first and the installation will be to there,
-## rather than to the folder used for libraries by everyone
-.libPaths(c("P:/R/libraries/AAA TEST LIBRARIES", .libPaths()))
-
-## delete the package folder from test folder when quiting R, to avoid write permission conflicts
-.Last <- function(){ 
-   unlink("P:/R/libraries/AAA TEST LIBRARIES/mbie", recursive = TRUE, force = TRUE)
-   unlink("P:/R/libraries/AAA TEST LIBRARIES/mbie_*", recursive = TRUE, force = TRUE)
+if(Sys.getenv("USERDNSDOMAIN") == "WD.GOVT.NZ") { ## if in MBIE environment
+   ## load common .Rprofile
+   source("P:/R/common.Rprofile")
+   
+   ## Set the library path so the Test folder is listed first and the installation will be to there,
+   ## rather than to the folder used for libraries by everyone
+   .libPaths(c("P:/R/libraries/AAA TEST LIBRARIES", .libPaths()))
+   
+   ## delete the package folder from test folder when quiting R, to avoid write permission conflicts
+   .Last <- function(){ 
+      unlink("P:/R/libraries/AAA TEST LIBRARIES/mbie", recursive = TRUE, force = TRUE)
+      unlink("P:/R/libraries/AAA TEST LIBRARIES/mbie_*", recursive = TRUE, force = TRUE)
+   }
+   
+   library(mbie)
+   # Proxy password to get through MBIE firewall
+   if(!exists("creds")){
+      creds <- AskCreds(Title = "User Log In Name and Password", startuid = "", returnValOnCancel = "ID_CANCEL")   
+      options(RCurlOptions = list(proxy = 'http://proxybcw.wd.govt.nz:8080',
+                                  proxyusername = creds$uid, 
+                                  proxypassword = creds$pwd))
+   }
 }

@@ -21,7 +21,14 @@ This data and code are available under a Creative Commons license - see http://i
 
 ```{r, RTESeg, warnings=FALSE, message=FALSE, dev="png", fig.align='center', fig.width=9, tidy=FALSE}
 
-load(url("https://github.com/nz-mbie/mbie-r-package-public/blob/master/raw_data/mbie-r-package-public-example-data.rda"))
+if(!file.exists("raw_data/mbie-r-package-public-example-data.rda")) {
+   download.file("https://github.com/nz-mbie/mbie-r-package-public/blob/master/raw_data/mbie-r-package-public-example-data.rda?raw=true", "mbie-r-package-public-example-data.rda", mode = "wb")
+   load("mbie-r-package-public-example-data.rda")
+   unlink("mbie-r-package-public-example-data.rda")
+} else {
+   load("raw_data/mbie-r-package-public-example-data.rda")
+}
+   
 library(dplyr)
 library(treemap)
 
