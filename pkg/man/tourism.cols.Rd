@@ -60,13 +60,11 @@ tmp <- IVStrips \%>\%
 
 tmp$period <- with(tmp, as.numeric(substring(YearQuarter, 1, 4)) + (as.numeric(substring(YearQuarter, 6, 6))-.5)/4)
 
-ggplot(tmp, aes(x = period, y = Total, color = POVTop3)) +
-  stat_sa(frequency = 4, geom = "point", size = 1) +
-  stat_sa(frequency = 4, size = 1) +
-  geom_line(frequency = 4, size = 0.5, alpha = 0.5) +
+ggplot(subset(tmp, period > 2000), aes(x = period, y = Total, color = POVTop3)) +
+  geom_line(size = 0.5, alpha = 0.5) +
   scale_color_manual(values = tourism.cols("Alternating")) +
   facet_wrap(~COPRTop5, scale = "free_y") +
-  ggtitle("Seasonally adjusted spend by purpose of visit")
+  ggtitle("IVS spend by purpose of visit")
   
 
 }

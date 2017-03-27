@@ -1,3 +1,5 @@
+#' @export MakePlotnote
+
 MakePlotnote <- 
    function(footnoteText =  format(Sys.time(), "%d %b %Y"),
             plot = NULL,

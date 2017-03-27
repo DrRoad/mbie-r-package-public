@@ -4,7 +4,7 @@
 Insert line breaks
 }
 \description{
-Inserts conveniently placed line breaks in a string or vector of strings.
+Inserts conveniently placed line breaks in a string or vector of strings.  Note that if you are using "\\n" as your line break character you can use stringr::str_wrap() instead.
 }
 \usage{
 wrap(s, n = 10, sep = "\\n")

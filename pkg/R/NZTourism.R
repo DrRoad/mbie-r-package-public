@@ -1,3 +1,20 @@
+#' @export Tourism.cols
+#' @export tourism.cols
+#' @export MBIE.cols
+#' @export mbie.cols
+#' @export qqNormEnv
+#' @export vplayout
+#' @export Wordcloud
+#' @export plotG
+#' @export dotchartG
+#' @export confplot
+#' @export compare
+#' @export plot_map
+#' @export rename.levels
+#' @export Roundthis
+#' @export CAGR
+#' @export Importance
+
 #-------Tourism palette------------------------
 
 # Create a vector of the Ministry of Tourism colours
@@ -81,7 +98,7 @@ qqNormEnv <- function(samp, ribbon.fill=alpha("steelblue", 0.1),...){
    tmp <- apply(tmp,2, sort)
    R <- t(apply(tmp[,-1],1,range))
    xsamp <- qqnorm(tmp[,1], plot=F)$x
-   return(qplot(sample=tmp[,1], stat="qq",...) +
+   return(qplot(sample=tmp[,1], ...) + stat_qq() +
              geom_ribbon(aes(ymin=R[,1], ymax=R[,2], x=xsamp), fill=ribbon.fill))
 }
 

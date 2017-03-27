@@ -1,3 +1,5 @@
+#' @export AskCreds
+
 #----AskCreds - so RStudio can access ODBC-------------------
 
 AskCreds <- function(Title="User credentials for a database", startuid="", returnValOnCancel = "ID_CANCEL") {

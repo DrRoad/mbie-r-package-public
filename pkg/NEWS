@@ -1,3 +1,16 @@
+TODO
+
+mbie 0.9.7
+* make install.packages = utils::install.packages when outside MBIE environment
+* remove the dependence to proto, zoo
+* updated logo_black_ps and logo_white_ps
+
+mbie 0.9.6 
+* add checkRda() and appendRda(). 
+* use roxygen2 to generate RD files for new functions. 
+* make the package version in build.R implicit.
+* rewrote qqNormEnv to avoid the warning message: `stat` is deprecated 
+
 mbie 0.9.5 
 * remove stat_xxx functions including stat_seas() and stat_rollapplyr() (these are now contained in the ggseas package)
 

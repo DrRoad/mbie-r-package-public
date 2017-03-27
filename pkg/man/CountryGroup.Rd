@@ -40,7 +40,7 @@ A factor of the same length as x but with 13 levels.
 Peter Ellis <peter.ellis@mbie.govt.nz>
 }
 \note{
-The function has country names hard coded into it, and the list is necessarily non-comprehensive and has to be added to from time to time when new countries pop up. Basically anything showing up grouped as “Other” shows a problematic unknown country and a warning messgage will list all the porblematic countries. 
+The function has country names hard coded into it, and the list is necessarily non-comprehensive and has to be added to from time to time when new countries pop up. Basically anything showing up grouped as “Other” shows a problematic unknown country and a warning messgage will list all the problematic countries. 
 
 The country groupings provided by "TNZ2013" are not exactly as might be expected.  Specifically:
 \itemize{

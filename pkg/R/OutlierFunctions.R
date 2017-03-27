@@ -7,6 +7,9 @@
 # function definition:
 #######################################
 
+#' @export creategraph
+#' @export autocheck
+
 
 creategraph<-function (x.df, area, RTItype, fpath){
 		

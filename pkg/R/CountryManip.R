@@ -1,3 +1,6 @@
+#' @export OneChina
+#' @export CountryGroup
+
 OneChina <- function(x){
   x <- rename.levels(x, 
                      orig=c("Macau (Special Administrative Region)", "Macao", "Hong Kong", 

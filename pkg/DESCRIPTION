@@ -1,13 +1,46 @@
 Package: mbie
 Type: Package
-Title: Miscellaneous functions and data used by New Zealand Ministry of Business, Innovation and Employment
-Version: 0.9.5
-Date: 2016-03-02
+Title: Miscellaneous functions and data used by New Zealand Ministry of
+    Business, Innovation and Employment
+Version: 0.9.7
+Date: 2016-09-02
 Author: Peter Ellis
-Maintainer: Sam Vennell <Sam.Vennell@mbie.govt.nz>; Eric Wu <eric.wu@mbie.govt.nz>
-Depends: R (>= 2.15.2), stats, tcltk2, ggplot2, grid, scales, proto, zoo
-Suggests: mbiedata, mbiemaps, survey, sp, maps, tm, wordcloud, dplyr, GGally, maps, proto, RODBC, XML, pbapply, png, igraph, grid, gridExtra, rgl, grImport, treemap, 
-    testthat
+Maintainer: Sam Vennell <Sam.Vennell@mbie.govt.nz>; Eric Wu
+    <eric.wu@mbie.govt.nz>
+Depends:
+    R (>= 2.15.2),
+    stats,
+    tcltk2,
+    ggplot2,
+    grid,
+    scales
+Suggests:
+    mbiedata,
+    mbiemaps,
+    survey,
+    sp,
+    maps,
+    tm,
+    wordcloud,
+    dplyr,
+    GGally,
+    maps,
+    proto,
+    RODBC,
+    XML,
+    pbapply,
+    png,
+    igraph,
+    grid,
+    gridExtra,
+    rgl,
+    grImport,
+    treemap,
+    testthat,
+    roxygen2
 Enhances: ggplot2
-Description: Contains functions and some of the more stable data used by the New Zealand Ministry of Business, Innovation and Employment, and in particular the Sector Performance team.
+Description: Contains functions and some of the more stable data used by the
+    New Zealand Ministry of Business, Innovation and Employment, and in
+    particular the Sector Performance team.
 License: GPL-3
+RoxygenNote: 5.0.1

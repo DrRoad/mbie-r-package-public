@@ -1,3 +1,5 @@
+#' @export theme_nothing
+
 # This file contains functions relating to ggplot2 themes for mbie
 
 theme_nothing <- function(base_size = 12, base_family = "sans") {

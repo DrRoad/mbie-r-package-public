@@ -1,3 +1,5 @@
+#' @export MemoryObjUse
+
 # A function MemoryObjUse() to help with memory management in R.  It lists the memory each object is using.
 # Antonia Milkop, Jan 2015.  Via email from James Hogan 
 

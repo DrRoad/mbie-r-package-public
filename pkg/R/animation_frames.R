@@ -1,4 +1,6 @@
 
+#' @export animation_frames
+
 animation_frames <- function(plot, 
                              dev      = "CairoPDF", 
                              start    = 1, 

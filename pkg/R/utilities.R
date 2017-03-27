@@ -1,3 +1,8 @@
+#' @export despace
+#' @export FormatDollars
+#' @export wrap
+#' @export Index12
+#' @export Index
 
 despace <- function(x){
   return(gsub(" ", "_", x, fixed=TRUE))

@@ -1,3 +1,5 @@
+#' @export YearEnd
+
 # A function YearEnd(), which converts a given Time Period in TRED data to Year, based on a Year End setting you give it.
 # Antonia Milkop, Jan 2015.  Eric Wu developed it
 

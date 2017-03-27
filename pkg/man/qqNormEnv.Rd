@@ -50,6 +50,8 @@ qqNormEnv(rgamma(30, 1, 3))
 
 qqNormEnv(runif(100))
 
+qqNormEnv(rnorm(1000))
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
