@@ -1,4 +1,4 @@
-<img src="figure/Header-1.png" title="" alt="" style="display: block; margin: auto;" />
+<img src="readme_files/figure-html/Header-1.png" style="display: block; margin: auto;" />
 "mbie" R package
 ==================
 
@@ -11,11 +11,17 @@ This data and code are available under a Creative Commons license - see http://i
 
 
 ```r
-library(mbiedata)
+if(!file.exists("raw_data/mbie-r-package-public-example-data.rda")) {
+   download.file("https://github.com/nz-mbie/mbie-r-package-public/blob/master/raw_data/mbie-r-package-public-example-data.rda?raw=true", "mbie-r-package-public-example-data.rda", mode = "wb")
+   load("mbie-r-package-public-example-data.rda")
+   unlink("mbie-r-package-public-example-data.rda")
+} else {
+   load("raw_data/mbie-r-package-public-example-data.rda")
+}
+   
 library(dplyr)
 library(treemap)
 
-data(RTEs)
 
 # Estimate compound annual growth rate
 growth <- RTEs %>%
@@ -44,7 +50,7 @@ treemap(RTE2,
         algorithm = "squarified")
 ```
 
-<img src="figure/RTESeg-1.png" title="plot of chunk RTESeg" alt="plot of chunk RTESeg" style="display: block; margin: auto;" />
+<img src="readme_files/figure-html/RTESeg-1.png" style="display: block; margin: auto;" />
 
 
 ## Demo of International Visitor Survey data
@@ -55,28 +61,73 @@ library(dplyr)
 library(scales)
 library(ggplot2)
 library(ggthemes)
+library(ggseas)
+```
 
-data(IVStrips)
+```
+## Loading required package: seasonal
+```
 
+```
+## Loading required package: zoo
+```
+
+```
+## 
+## Attaching package: 'zoo'
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     as.Date, as.Date.numeric
+```
+
+```r
 tmp <- IVStrips %>%
             group_by(YearQuarter, CountryGroup(COPRTop5)) %>%
             summarise(Total = sum(SmoothTotalSpend * FinalWeight * Adjusted_Factor)) %>%
             data.frame()
+```
 
+```
+## Warning in CountryGroup(structure(c(6L, 1L, 3L, 6L, 6L, 2L, 6L, 3L, 6L, : Countries 'Other' wasn't recognised by the country groups and treated as 'other'!
+##  If this is not appropriate, please contact maintainer of the package {mbie}!
+```
+
+```r
 tmp$period <- with(tmp, as.numeric(substring(YearQuarter, 1, 4)) + (as.numeric(substring(YearQuarter, 6, 6))-.5)/4)
 names(tmp)[2] <- "Country"
 
 ggplot(tmp, aes(x = period, y = Total / 10^6, color = Country)) +
-  stat_sa(frequency = 4, geom = "point", size = 2) +
-  stat_sa(frequency = 4, size = 2) +
-  geom_line(frequency = 4, size = 0.8, alpha = 0.4) +
+  stat_seas(frequency = 4, geom = "point", size = 2) +
+  stat_seas(frequency = 4, size = 2) +
+  geom_line(size = 0.8, alpha = 0.4) +
   theme_economist() +
   labs(x = "", y = "Total spend ($m)\n") +
   scale_color_manual("", values=tourism.cols("Alternating")) +
   ggtitle("Seasonally adjusted NZ tourism spend by country of origin")
 ```
 
-<img src="figure/IVSeg-1.png" title="plot of chunk IVSeg" alt="plot of chunk IVSeg" style="display: block; margin: auto;" />
+```
+## Calculating starting date of 1997.125 from the data.
+```
+
+```
+## Calculating starting date of 1997.125 from the data.
+## Calculating starting date of 1997.125 from the data.
+## Calculating starting date of 1997.125 from the data.
+## Calculating starting date of 1997.125 from the data.
+## Calculating starting date of 1997.125 from the data.
+## Calculating starting date of 1997.125 from the data.
+## Calculating starting date of 1997.125 from the data.
+## Calculating starting date of 1997.125 from the data.
+## Calculating starting date of 1997.125 from the data.
+## Calculating starting date of 1997.125 from the data.
+## Calculating starting date of 1997.125 from the data.
+```
+
+<img src="readme_files/figure-html/IVSeg-1.png" style="display: block; margin: auto;" />
 
 
 ## Demo of Regional Tourism Estimates in combination with maps in the accompanying mbiemaps package
@@ -87,13 +138,28 @@ ggplot(tmp, aes(x = period, y = Total / 10^6, color = Country)) +
 library(sp)
 library(lattice)
 library(latticeExtra)
+```
+
+```
+## Loading required package: RColorBrewer
+```
+
+```
+## 
+## Attaching package: 'latticeExtra'
+```
+
+```
+## The following object is masked from 'package:ggplot2':
+## 
+##     layer
+```
+
+```r
 library(mbiemaps)
 library(dplyr)
 
 data(RTO)
-
-# load in the Regional Tourism Estimate (RTE) data
-data(RTEs)
 
 # Aggregate domestic tourism spend and average annual growth rate
 dom <- RTEs %>%
@@ -133,7 +199,7 @@ trellis.par.set("axis.line", list(col=NA,lty=1,lwd=1))
 spplot(RTO, zcol="Growth", col.regions=cols, main="Domestic tourist spend", col="white", 
 	sp.layout=list("sp.points", coords, pch=1, col="black", lwd=2, cex=sizes)) # add circles layer
 grid.text("Circle size is proportional to\ndomestic tourism spend in 2013", .2,.7)
-grid.text("Average growth per year in domestic tourism 2009 - 2013", .93,.5, , rot=-90)
+grid.text("Average growth per year in domestic tourism 2009 - 2013", .93,.5, rot=-90)
 ```
 
-<img src="figure/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" />
+<img src="readme_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" />

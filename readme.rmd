@@ -1,3 +1,8 @@
+---
+output: 
+  html_document: 
+    keep_md: yes
+---
 ```{r Header, echo=FALSE, results='hide', cache=FALSE, message=FALSE, fig.width=2.25, fig.height=.6, fig.align="center", fig.cap="", dpi=200}
 library(mbie)
 library(mbiemaps)
